@@ -1,0 +1,70 @@
+erDiagram
+    PLATFORMS ||--o{ ADVERTISING_RECORDS : "hosts"
+    CAMPAIGNS ||--o{ ADVERTISING_RECORDS : "contains"
+    CITIES ||--o{ ADVERTISING_RECORDS : "targets"
+    DEVICES ||--o{ ADVERTISING_RECORDS : "delivers_on"
+
+    PLATFORMS {
+        int platform_id PK
+        string platform_name UK
+        datetime created_at
+    }
+
+    CAMPAIGNS {
+        int campaign_id PK
+        string campaign_name UK
+        datetime created_at
+    }
+
+    CITIES {
+        int city_id PK
+        string city_name UK
+    }
+
+    DEVICES {
+        int device_id PK
+        string device_name UK
+    }
+
+    ADVERTISING_RECORDS {
+        int record_id PK
+        date record_date
+        int campaign_id FK
+        int platform_id FK
+        int city_id FK
+        int device_id FK
+        string age_group
+        string gender
+        int impressions
+        int clicks
+        float spend
+        int conversions
+        float revenue
+    }
+
+    BENCHMARK_RESULTS {
+        int benchmark_id PK
+        datetime executed_at
+        int dataset_size
+        string engine
+        float execution_time_sec
+        float throughput_rps
+        float memory_mb
+        string status
+        string notes
+    }
+
+    BUDGET_RECOMMENDATIONS {
+        int recommendation_id PK
+        datetime created_at
+        float total_budget
+        string strategy
+        string platform
+        float allocated_percentage
+        float allocated_amount
+        float expected_conversions
+        float expected_revenue
+        float expected_roas
+        string rationale
+    }
+
